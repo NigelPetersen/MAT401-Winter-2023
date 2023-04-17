@@ -1,0 +1,228 @@
+\documentclass[11pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[linguistics]{forest}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amstext}
+\usepackage{amsmath,amssymb,amsthm, thmtools}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage{array}
+\usepackage{marvosym}
+\usepackage{lastpage}
+\usepackage{wasysym}
+\usepackage{multicol}
+\usepackage{tikz-cd}
+\usepackage{array}
+\usepackage{dirtytalk}
+\usepackage{qtree}
+\usepackage{framed}
+\usepackage{enumitem}
+\usepackage[hyperfootnotes=false]{hyperref}
+\hypersetup{
+colorlinks=true,
+linkcolor={mypink}}
+
+\definecolor{mypink}{RGB}{255, 50, 147}
+\definecolor{pink}{RGB}{255, 0, 147}
+
+\setlength{\textheight}{9.3in}
+\setlength{\topmargin}{-0.7in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+\def\mbb{\mathbb}
+\def\mb{\mathbf}
+\def\mc{\mathcal}
+\def\R{\mbb{R}}
+\def\Q{\mbb{Q}}
+\def\Z{\mbb{Z}}
+\def\C{\mbb{C}}
+\def\N{\mbb{N}}
+\def\F{\mbb{F}}
+\def\K{\mathbb{K}}
+\def\T{\mc{T}}
+\def\A{\mc{A}}
+\def\X{\mathfrak{X}}
+\def\E{\exists}
+\def\e{\epsilon}
+\def\d{\delta}
+\def\Ra{\Rightarrow}
+\def\vs{\vspace{5mm}}
+\def\La{\Leftarrow}
+\def\and{\quad \text{and} \quad}
+\def\rad{\mathrm{rad}}
+\def\tt{\texttt}
+
+\def\nemt{\neq \emptyset}
+\newcommand{\dif}[2]{\frac{d#1}{d#2}}
+\newcommand{\pardif}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\twopardif}[2]{\frac{\partial ^2 #1}{\partial #2^2}}
+\newcommand{\Matrix}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\Lint}[1]{\ointctrclockwise_{#1}}
+\newcommand{\Ang}[1]{\left\langle #1 \right\rangle}
+\newcommand{\Inn}{\langle \cdot , \cdot \rangle}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\blanknorm}[1]{\| \cdot \|_{#1}}
+\newcommand{\epfrac}[1]{\frac{\e}{#1}}
+\newcommand{\ext}[1]{\tilde{\mb #1}}
+
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\bar}{\overline} 
+\renewcommand{\hat}{\widehat}
+%\renewcommand{\qedsymbol}{\FAX}
+
+
+\declaretheoremstyle[
+  headfont=\color{mypink}\normalfont\bfseries,
+%  bodyfont=\color{red}\normalfont\itshape,
+]{pink}
+
+\declaretheoremstyle[
+  headfont=\color{black}\normalfont\bfseries,
+%  bodyfont=\color{red}\normalfont\itshape,
+]{boxedsolution}
+
+\theoremstyle{pink}
+\newtheorem{definition}{Definition}[section]
+
+\theoremstyle{boxedsolution}
+\newtheorem*{bproof}{Proof}
+\newtheorem*{solution}{Solution}
+  
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{example}[definition]{Example}
+\newtheorem{exercise}[definition]{Exercise}
+\newtheorem{question}{Question}
+
+\newtheoremstyle{claim}
+{\topsep}{\topsep}{}{}%              
+{\bfseries}{:}%             
+{5pt plus 1pt minus 1pt}{}%             
+\theoremstyle{claim}
+% change this to \newtheorem*{claim}{Claim} to leave things un-numbered
+\newtheorem{claim}{Claim}
+
+
+
+\newenvironment{boxsol}
+    {\begin{framed}
+    \begin{solution}
+    }
+    {
+    \end{solution}    
+    \end{framed}}
+    
+\newenvironment{boxproof}
+    {\begin{framed}
+    \begin{bproof}
+    }
+    {
+    \end{bproof} 
+    \end{framed}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MAT401 - Polynomial Equations and Fields}
+\rhead{Midterm Practice}
+\cfoot{Page \thepage \ of \pageref{LastPage}}
+
+\begin{document}
+
+\thispagestyle{empty}
+
+\begin{framed}
+    \begin{center}
+        \large\textbf{MAT401: Polynomial Equations and Fields --- Midterm Practice} \vspace{3mm}\\
+        \textbf{Topics:} Rings, Ideals, Quotients, Fields, Homomorphisms.
+    \end{center}
+\end{framed}
+
+\vs
+
+\begin{question}
+Denote by $C(\R)$ the ring of continuous functions $f:\R \to \R$ under pointwise addition and multiplication. For points $a_1, \dots, a_n \in \R$, define 
+\[
+Z(a_1, \dots, a_n) = \{f \in C(\R): f(a_i) = 0 \ \forall i = 1, \dots, n\}
+\]
+Prove that $Z(a_1, \dots, a_n) \trianglelefteq C(\R)$. Is $Z(a_1, \dots, a_n)$ necessarily a prime ideal for any choice of points? 
+\end{question}
+
+\begin{question}
+Let $R$ be an integral domain. Prove that $R[x]$, the ring of polynomials in the variable $x$ with coefficients over $R$, is also an integral domain.
+\end{question}
+
+
+\begin{question}
+If $R$ is a ring and $K$ is a field for which there is a ring isomorphism $f: K \to R$, prove that $R$ is a field, and hence $f$ is a field isomorphism.
+\end{question}
+
+\begin{question}
+Let $R$ be a ring, with $I$ and $J$ ideals of $R$. 
+\begin{enumerate}
+    \item[(a)] Prove the ideal test: A nonempty subset $I$ of $R$ is an ideal of $R$ if and only $x - y \in I$ and $ax\in I$ for all $x,y \in I$ and $a \in R$. (This essentially combines the subring test with the definition of an ideal)
+    
+    \item[(b)] Show that $I + J := \{x+y: x \in I, y \in J\}$ is an ideal of $R$.
+    
+    \item[(c)] Show that $IJ = \left\{ \sum_{i=1}^n x_iy_i: n \in \N, x_i \in I, y_i \in J \right\}$ is an ideal of $R$.
+\end{enumerate}
+\end{question}
+
+\begin{question}
+Fix a prime $p \in \N$, and recall that $\sqrt{p} \notin \Q$. Define the ideal $I_p = \Ang{x^2-p}$.
+\begin{enumerate}
+    \item[(a)] Prove that $\Q[x] / I_p$ is a field.
+    
+    \item[(b)] Prove that $\Q[x]/ I_p \cong \Q(\sqrt{p}) = \{a+b\sqrt{p}: a, b \in \Q\}$. \textit{Hint: Associate $[x]$ and $\sqrt{p}$}. 
+    
+    \item[(c)] \textcolor{pink}{\textbf{Bonus:}} Prove that $\Q[x]/I_p \cong \Q[x]/I_q$ if and only if $p = q$. (This is diving into material we'll see later on in the course, so don't worry about it too much now)
+\end{enumerate}
+\end{question}
+
+\begin{question}
+    Let $R,S$ be commutative rings with unity, and $f: R \to S$ a surjective homomorphism.
+    \begin{enumerate}
+        \item[(a)] Prove that for any ideals $I \trianglelefteq R$ and $J \trianglelefteq S$, we have $f(I) \trianglelefteq S$ and $f^{-1}(J) \trianglelefteq R$.
+        
+        \item[(b)] Suppose now that $f:R \to S$ is an isomorhpism, and consider the corresponding induced maps $F:R/I \to S/f(I)$ and $G:R/f^{-1}(J) \to S/J$ by
+            \[
+            F(r+I) = f(r) + f(I) \and G(r + f^{-1}(J)) = f(r) + J
+            \]
+        Prove that $F$ and $G$ are isomorphisms.
+            
+        \item[(c)] \textcolor{pink}{\textbf{Bonus:}} Suppose $I \trianglelefteq R, J \trianglelefteq S$ are prime. Are either of $f(I) \trianglelefteq S, f^{-1}(J) \trianglelefteq R$ prime? What if we replace prime with maximal? (Don't worry too much about this one, it is much easier to prove with an additional result you don't know yet)
+    \end{enumerate}
+\end{question}
+
+\begin{question}
+Let $R$ and $S$ be rings with unity. Prove that $R \oplus S$ cannot be a field.
+\end{question}
+
+\begin{question}
+An ideal $I$ in a ring $R$ with unity is called \textit{reducible} if there are ideals $J_1, J_2 \trianglelefteq R$ for which $I = J_1 \cap J_2$ and $I \subsetneq J_1, J_2$, and is called irreducible otherwise. Prove that an ideal $I$ of $R$ is prime if and only if it is irreducible. (This furthers illustrates the idea that prime ideals behave like prime numbers)
+\end{question}
+
+\begin{question}
+Let $\R[x,y]$ be the ring of polynomials in the variables $x$ and $y$ over $\R$. Prove that $\R[x,y]/\Ang{y} \cong \R[x]$. \textit{Hint: Use the first isomorphism theorem.}
+\end{question}
+
+\begin{question}
+Let $R$ be a ring, and $I,J \trianglelefteq R$ for which $I \subseteq J$. Prove that $I \trianglelefteq J$ and use the map $f: R/I \to R/J$ defined by $f(x + I) = x + J$ to show that
+\[
+J/I \trianglelefteq R/I \and R/J \cong (R/I)/(J / I)
+\]
+You'll have to argue that the map is a well-defined homomorphism first, then look at the kernel and make use of a theorem.
+\end{question}
+
+\end{document}
