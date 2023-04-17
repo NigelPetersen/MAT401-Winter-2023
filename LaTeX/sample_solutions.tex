@@ -1,0 +1,175 @@
+\documentclass[11pt]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[most]{tcolorbox}
+\usepackage[linguistics]{forest}
+\usepackage{fancyhdr}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amstext}
+\usepackage{amsmath,amssymb,amsthm, thmtools}
+\usepackage{tikz,lipsum,lmodern}
+\usepackage{array}
+\usepackage{marvosym}
+\usepackage{lastpage}
+\usepackage{multicol}
+\usepackage{tikz-cd}
+\usepackage{array}
+\usepackage{dirtytalk}
+\usepackage{qtree}
+\usepackage{framed}
+\usepackage{enumitem}
+\usepackage[hyperfootnotes=false]{hyperref}
+\hypersetup{
+colorlinks=true,
+linkcolor={mypink}}
+
+\definecolor{mypink}{RGB}{255, 50, 147}
+\definecolor{pink}{RGB}{255, 0, 147}
+
+\setlength{\textheight}{9.3in}
+\setlength{\topmargin}{-0.7in}
+\setlength{\textwidth}{6.5in}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\parskip}{6pt}
+\setlength{\parindent}{0pt}
+
+\def\mbb{\mathbb}
+\def\mb{\mathbf}
+\def\mc{\mathcal}
+\def\R{\mbb{R}}
+\def\Q{\mbb{Q}}
+\def\Z{\mbb{Z}}
+\def\C{\mbb{C}}
+\def\N{\mbb{N}}
+\def\F{\mbb{F}}
+\def\K{\mathbb{K}}
+\def\T{\mc{T}}
+\def\A{\mc{A}}
+\def\X{\mathfrak{X}}
+\def\E{\exists}
+\def\e{\epsilon}
+\def\d{\delta}
+\def\Ra{\Rightarrow}
+\def\vs{\vspace{5mm}}
+\def\La{\Leftarrow}
+\def\and{\quad \text{and} \quad}
+\def\rad{\mathrm{rad}}
+\def\tt{\texttt}
+
+\def\nemt{\neq \emptyset}
+\newcommand{\dif}[2]{\frac{d#1}{d#2}}
+\newcommand{\pardif}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\twopardif}[2]{\frac{\partial ^2 #1}{\partial #2^2}}
+\newcommand{\Matrix}[1]{\begin{pmatrix} #1 \end{pmatrix}}
+\newcommand{\Lint}[1]{\ointctrclockwise_{#1}}
+\newcommand{\Ang}[1]{\left\langle #1 \right\rangle}
+\newcommand{\Inn}{\langle \cdot , \cdot \rangle}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
+\newcommand{\blanknorm}[1]{\| \cdot \|_{#1}}
+\newcommand{\epfrac}[1]{\frac{\e}{#1}}
+\newcommand{\ext}[1]{\tilde{\mb #1}}
+
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\bar}{\overline} 
+\renewcommand{\hat}{\widehat}
+%\renewcommand{\qedsymbol}{\FAX}
+
+
+\declaretheoremstyle[
+  headfont=\color{mypink}\normalfont\bfseries,
+%  bodyfont=\color{red}\normalfont\itshape,
+]{pink}
+
+\declaretheoremstyle[
+  headfont=\color{black}\normalfont\bfseries,
+%  bodyfont=\color{red}\normalfont\itshape,
+]{boxedsolution}
+
+\theoremstyle{pink}
+\newtheorem{definition}{Definition}
+
+\theoremstyle{boxedsolution}
+\newtheorem*{bproof}{Proof}
+\newtheorem*{solution}{Solution}
+  
+\theoremstyle{definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[definition]{Corollary}
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{example}[definition]{Example}
+\newtheorem{exercise}[definition]{Exercise}
+\newtheorem{question}{Question}
+
+\newtheoremstyle{claim}
+{\topsep}{\topsep}{}{}%              
+{\bfseries}{:}%             
+{5pt plus 1pt minus 1pt}{}%             
+\theoremstyle{claim}
+% change this to \newtheorem*{claim}{Claim} to leave things un-numbered
+\newtheorem{claim}{Claim}
+
+
+
+\newenvironment{boxsol}
+    {\begin{framed}
+    \begin{solution}
+    }
+    {
+    \end{solution}    
+    \end{framed}}
+    
+\newenvironment{boxproof}
+    {\begin{framed}
+    \begin{bproof}
+    }
+    {
+    \end{bproof} 
+    \end{framed}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{MAT401 - Polynomial Equations and Fields}
+\rhead{Nigel Petersen}
+\cfoot{\thepage}
+
+\begin{document}
+
+There were a few common mistakes with these questions in particular, so I've drafted some more detailed sample solutions. Please let me know if you have any questions.
+
+\vs
+
+\setcounter{question}{1}
+
+\begin{question}
+Set $\alpha = \sqrt[3]{1 + \sqrt{3}}$. Determine $[\Q(\alpha); \Q(\sqrt{3})]$ and a basis for the extension.
+\end{question}
+
+\begin{proof}
+Write $x = \alpha$ so that $x^3 = 1 + \sqrt{3}$, and hence $m_1(x) = x^3 - 1 - \sqrt{3} \in \Q(\sqrt{3})[x]$ is a monic polynomial containing $\alpha$ as a root. Note that by the monotonicity of $x^3$, we have that $\alpha$ is the only root of $m_1(x)$ over $\R$ and hence over $\Q(\sqrt{3})$. It will then suffice to show $\alpha \notin \Q(\sqrt{3})$ to show $m_1(x)$ is irreducible, and hence the minimal polynomial. Suppose towards a contradiction $\alpha \in \Q(\sqrt{3})$. Then $\Q(\sqrt{3})$ is a field containing $\Q$ and $\alpha$, so by minimality we have $\Q(\alpha) \subseteq \Q(\sqrt{3})$, namely $\Q(\alpha) \leq \Q(\sqrt{3})$ as $\Q$-vector spaces. However, we claim that $[\Q(\alpha) ; \Q] = 6$. Indeed, to see this, write $x = \alpha$ and hence $x^3 - 1 = \sqrt{3}$, so that $m_2(x) = x^6 - 2x^3 - 2 \in \Q[x]$ is a monic polynomial containing $\alpha$ as a root, and moreover $m_2(x)$ is irreducible over $\Q$ by Eisenstien with $p=2$. Thus, $m_2(x)$ is the minimal polynomial for $\alpha$ over $\Q$, and hence 
+\[
+[\Q(\alpha); \Q] = \deg(m_2(x)) = 6
+\]
+which is a contradiction as $[\Q(\sqrt{3}); \Q] = 2$. Thus, $\alpha \notin \Q(\sqrt{3})$ and hence $m_1(x)$ is the minimal polynomial for $\alpha$ over $\Q(\sqrt{3})$. Finally, we have that $[\Q(\alpha); \Q(\sqrt{3})] = \deg(m_2(x)) = 3$, and a basis is given by $\beta = \{1, \alpha, \alpha^2\}$.
+\end{proof}
+
+\vs
+
+\begin{question}
+    If $a,b \in \R$ for which $z = a+bi$ is algebraic over $\Q$, then $a$ and $b$ are algebraic over $\Q$.
+\end{question}
+
+\begin{proof}
+    As $z$ is algebraic over $\Q$, there is a polynomial $q(x) \in \Q[x]$ for which $q(z) = 0$. Recall that we  have $q(\bar{z}) = 0$ by Assignment 3, and note that $p(x) = x^2+1 \in \Q[x]$ satisfies $p(i) = 0$. Thus each of $z, \bar{z}, i$ are algebraic over $\Q$, and hence over any extension of $\Q$. Finally, $E = \Q(z, \bar{z}, i)$ is a finite, and hene algebraic, extension of $\Q$ by the degree Lemma, as 
+    \[
+    [\Q(z, \bar{z}, i): \Q] \leq \deg(p(x))\deg(q(x))^2 < \infty
+    \]
+    Thus, $a$ and $b$ are algebraic over $\Q$ as $a = \frac{z + \bar{z}}{2} \in E$ and $b = \frac{x - \bar{z}}{2i} \in E$.
+\end{proof}
+
+
+\end{document}
